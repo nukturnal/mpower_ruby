@@ -2,7 +2,7 @@ module MPower
   module Checkout
     class Invoice < MPower::Checkout::Core
 
-      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store, :cancel_url, :return_url
+      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store, :cancel_url, :return_url, :invoice_url
       CREATE_BASE_URL = "https://app.mpowerpayments.com/co-invoice"
       def initialize
         @items = {}
@@ -72,8 +72,22 @@ module MPower
             :return_url => @return_url
           }
         }
+
         token = MPower::Integration.mode == "live" ? MPower::Integration.live_token : MPower::Integration.test_token
-        http_request("#{CREATE_BASE_URL}/#{token}",{:data => checkout_payload },true)
+        result = http_request("#{CREATE_BASE_URL}/#{token}",{:data => checkout_payload },true)
+
+        case result[:status]
+        when 201,200
+          @message = "MPower Checkout Invoice successfully created."
+          @invoice_url = result[:body]
+          @status = MPower::SUCCESS
+          true
+        else
+          @message = "MPower Checkout Invoice creation failed"
+          @invoice_url = nil
+          @status = MPower::FAIL
+          false
+        end
       end
 
     end

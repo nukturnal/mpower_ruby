@@ -7,5 +7,7 @@ require "mpower/utilities"
 require "mpower/checkout"
 
 module MPower
-
+  SUCCESS = "success"
+  FAIL = "fail"
+  PENDING = "pending"
 end

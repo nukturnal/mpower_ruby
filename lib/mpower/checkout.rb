@@ -2,6 +2,8 @@ module MPower
   module Checkout
     class Core
       include MPower::Utilities
+
+      attr_accessor :status, :response_message, :response_code
     end
   end
 end
