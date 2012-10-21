@@ -10,7 +10,7 @@ module MPower
         @temp_items = []
         @total_amount = 0.0
         @currency = "ghs"
-        @store = MPower::Checkout::Store.new
+        @store = MPower::Store
       end
 
       # Adds invoice items to the @items hash, the idea is to allow this function to be used in a loop
@@ -72,7 +72,7 @@ module MPower
             :return_url => @return_url
           }
         }
-        token = MPower.mode == "live" ? MPower.live_token : MPower.test_token
+        token = MPower::Integration.mode == "live" ? MPower::Integration.live_token : MPower::Integration.test_token
         http_request("#{CREATE_BASE_URL}/#{token}",{:data => checkout_payload },true)
       end
 
