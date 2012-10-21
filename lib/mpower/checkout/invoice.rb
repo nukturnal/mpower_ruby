@@ -67,7 +67,7 @@ module MPower
             :logo_url => @store.logo_url,
             :website_url => @store.website_url
           },
-          :action => {
+          :actions => {
             :cancel_url => @cancel_url,
             :return_url => @return_url
           }
