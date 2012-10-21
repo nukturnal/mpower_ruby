@@ -1,7 +1,7 @@
 module MPower
   module Checkout
     class Core
-      include MPower::Utils
+      include MPower::Utilities
     end
   end
 end

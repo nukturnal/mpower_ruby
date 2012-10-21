@@ -18,4 +18,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.add_dependency('rest-client', '~> 1.4')
   gem.add_dependency('multi_json', '~> 1.1')
+  gem.add_dependency('faraday')
+  gem.add_dependency('faraday_middleware')
 end
