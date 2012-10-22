@@ -13,6 +13,7 @@ module MPower
         req.headers['MP-Public-Key'] = MPower::Integration.public_key
         req.headers['MP-Private-Key'] = MPower::Integration.private_key
         req.headers['MP-Master-Key'] = MPower::Integration.master_key
+        req.headers['MP-Token'] = MPower::Integration.token
         req.headers['MP-Mode'] = MPower::Integration.mode
         req.body = hash_to_json params[:data]
       end
