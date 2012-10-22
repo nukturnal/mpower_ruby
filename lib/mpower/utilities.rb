@@ -10,18 +10,10 @@ module MPower
       result = conn.post do |req|
         req.headers.merge!(params[:headers]) unless params[:headers].blank?
         req.headers["User-Agent"] = "MPower Checkout API Ruby client v1 aka Don Nigalon"
-
-        if MPower::Integration.mode == "live"
-          req.headers['MP-Public-Key'] = MPower::Integration.live_public_key
-          req.headers['MP-Private-Key'] = MPower::Integration.live_private_key
-          req.headers['MP-Master-Key'] = MPower::Integration.live_master_key
-          req.headers['MP-Mode'] = "live"
-        else
-          req.headers['MP-Public-Key'] = MPower::Integration.test_public_key
-          req.headers['MP-Private-Key'] = MPower::Integration.test_private_key
-          req.headers['MP-Master-Key'] = MPower::Integration.test_master_key
-          req.headers['MP-Mode'] = "test"
-        end
+        req.headers['MP-Public-Key'] = MPower::Integration.public_key
+        req.headers['MP-Private-Key'] = MPower::Integration.private_key
+        req.headers['MP-Master-Key'] = MPower::Integration.master_key
+        req.headers['MP-Mode'] = MPower::Integration.mode
         req.body = hash_to_json params[:data]
       end
       { :status => result.status, :body => result.body }

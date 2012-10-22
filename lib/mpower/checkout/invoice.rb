@@ -73,7 +73,7 @@ module MPower
           }
         }
 
-        token = MPower::Integration.mode == "live" ? MPower::Integration.live_token : MPower::Integration.test_token
+        token = MPower::Integration.token
         result = http_request("#{CREATE_BASE_URL}/#{token}",{:data => checkout_payload },true)
 
         case result[:status]

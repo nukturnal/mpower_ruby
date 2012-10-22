@@ -1,33 +1,20 @@
 module MPower
   module Integration
-    @@live_master_key = nil
-    @@live_private_key = nil
-    @@live_public_key = nil
-    @@live_token = nil
-
-    @@test_master_key = nil
-    @@test_private_key = nil
-    @@test_public_key = nil
-    @@test_token = nil
+    @@master_key = nil
+    @@private_key = nil
+    @@public_key = nil
+    @@token = nil
 
     @@mode = "test"
 
-    def self.live_master_key=(live_master_key); @@live_master_key = live_master_key; end
-    def self.live_master_key; @@live_master_key; end
-    def self.live_private_key=(live_private_key); @@live_private_key = live_private_key; end
-    def self.live_private_key; @@live_private_key; end
-    def self.live_public_key=(live_public_key); @@live_public_key = live_public_key; end
-    def self.live_public_key; @@live_public_key; end
-    def self.live_token=(live_token); @@live_token = live_token; end
-    def self.live_token; @@live_token; end
-    def self.test_master_key=(test_master_key); @@test_master_key = test_master_key; end
-    def self.test_master_key; @@test_master_key; end
-    def self.test_private_key=(test_private_key); @@test_private_key = test_private_key; end
-    def self.test_private_key; @@test_private_key; end
-    def self.test_public_key=(test_public_key); @@test_public_key = test_public_key; end
-    def self.test_public_key; @@test_public_key; end
-    def self.test_token=(test_token); @@test_token = test_token; end
-    def self.test_token; @@test_token; end
+    def self.master_key=(master_key); @@master_key = master_key; end
+    def self.master_key; @@master_key; end
+    def self.private_key=(private_key); @@private_key = private_key; end
+    def self.private_key; @@private_key; end
+    def self.public_key=(public_key); @@public_key = public_key; end
+    def self.public_key; @@public_key; end
+    def self.token=(token); @@token = token; end
+    def self.token; @@token; end
 
     def self.mode=(mode); @@mode = mode; end
     def self.mode; @@mode; end
