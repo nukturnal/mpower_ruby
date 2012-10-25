@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'mpower/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "mpower_ruby"
+  gem.name          = "mpower"
   gem.version       = MPower::VERSION
   gem.authors       = ["Alfred Rowe"]
   gem.email         = ["alfred@ncodedevlabs.com"]
