@@ -1,5 +1,5 @@
 module MPower
-  module Integration
+  module Setup
     @@master_key = nil
     @@private_key = nil
     @@public_key = nil

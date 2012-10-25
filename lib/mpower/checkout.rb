@@ -3,7 +3,7 @@ module MPower
     class Core
       include MPower::Utilities
 
-      attr_accessor :status, :response_message, :response_code
+      attr_accessor :status, :response_text, :response_code
     end
   end
 end

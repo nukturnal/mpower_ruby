@@ -3,14 +3,15 @@ module MPower
     class Invoice < MPower::Checkout::Core
 
       attr_accessor :items, :total_amount, :taxes, :description, :currency, :store, :cancel_url, :return_url, :invoice_url
-      BASE_URL = "https://app.mpowerpayments.com/co-invoice"
+      BASE_URL = "http://0.0.0.0:3000/checkout-invoice/create"
       def initialize
         @items = {}
         @taxes = {}
-        @temp_items = []
         @total_amount = 0.0
         @currency = "ghs"
         @store = MPower::Checkout::Store
+        @return_url = @store.return_url
+        @cancel_url = @store.cancel_url
       end
 
       # Adds invoice items to the @items hash, the idea is to allow this function to be used in a loop
@@ -75,14 +76,16 @@ module MPower
 
         result = http_request(BASE_URL,{:data => checkout_payload },true)
 
-        case result[:status]
-        when 201,200
-          @message = "MPower Checkout Invoice successfully created."
-          @invoice_url = result[:body]
+        case result["response_code"]
+        when "00"
+          @response_text = result["response_description"]
+          @response_code = result["response_code"]
+          @invoice_url = result["response_text"]
           @status = MPower::SUCCESS
           true
         else
-          @message = "MPower Checkout Invoice creation failed"
+          @response_text = result["response_text"]
+          @response_code = result["response_code"]
           @invoice_url = nil
           @status = MPower::FAIL
           false
