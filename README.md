@@ -20,6 +20,7 @@ Or install it yourself as:
 
 ## Setup your API Keys
 If you are using rails you may create an file under `RAILS_ROOT/config/initializers` and put these setting there.
+
     MPower::Setup.master_key = "YOUR_API_MASTER_KEY"
     MPower::Setup.public_key = "YOUR_API_PUBLIC_KEY"
     MPower::Setup.private_key = "YOUR_API_PRIVATE_KEY"
@@ -28,6 +29,7 @@ If you are using rails you may create an file under `RAILS_ROOT/config/initializ
 
 ## Setup your checkout store information
 Configurations for checkout store are all optional. You may however want to set your Store Name and Tagline :)
+
     MPower::Checkout::Store.name = "NAME OF YOUR STORE"
     MPower::Checkout::Store.tagline = "STORE'S TAGLINE"
     MPower::Checkout::Store.postal_address = "STORE POSTAL ADDRESS"
