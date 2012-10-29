@@ -110,7 +110,6 @@ module MPower
         }
 
         result = http_json_request(MPower::Setup.checkout_base_url,checkout_payload)
-
         case result["response_code"]
         when "00"
           @response_text = result["response_description"]
