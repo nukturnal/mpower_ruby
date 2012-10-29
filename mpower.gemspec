@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = MPower::VERSION
   gem.authors       = ["Alfred Rowe"]
   gem.email         = ["alfred@ncodedevlabs.com"]
-  gem.description   = %q{MPower Payments is a better payment experience. See http://mpowerpayments.com for details}
+  gem.description   = %q{Ruby library for integrating with the MPower Gateway}
   gem.summary       = %q{Ruby client bindings for the MPower API}
   gem.homepage      = "https://github.com/nukturnal/mpower_ruby"
 
