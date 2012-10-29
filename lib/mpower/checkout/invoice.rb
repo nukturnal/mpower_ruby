@@ -2,11 +2,14 @@ module MPower
   module Checkout
     class Invoice < MPower::Checkout::Core
 
-      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store, :cancel_url, :return_url, :invoice_url
-      BASE_URL = "http://0.0.0.0:3000/checkout-invoice/create"
+      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store
+      attr_accessor :customer, :custom_data, :cancel_url, :return_url, :invoice_url
+
       def initialize
         @items = {}
         @taxes = {}
+        @custom_data = {}
+        @customer = {}
         @total_amount = 0.0
         @currency = "ghs"
         @store = MPower::Checkout::Store
@@ -44,12 +47,44 @@ module MPower
         hash_to_json @taxes
       end
 
-      def confirm(token=nil)
-
+      def get_customer_info(key)
+        @customer["#{key}"]
       end
 
-      def retrieve(token=nil)
+      def get_custom_data(key)
+        @custom_data["#{name}"]
+      end
 
+      def confirm(token)
+        result = http_get_request("#{MPower::Setup.checkout_confirm_base_url}#{token}");
+        if result.size > 0
+          case result['status']
+          when 'completed'
+            @status = result['status']
+            @customer = result['customer']
+            @items = result['invoice']['items']
+            @taxes = result['invoice']['taxes']
+            @description = result['invoice']['description']
+            @custom_data = result['custom_data']
+            @total_amount = result['invoice']['total_amount']
+            @receipt_url = result['receipt_url']
+            true
+          else
+            @status = result['status']
+            @items = result['invoice']['items']
+            @taxes = result['invoice']['taxes']
+            @description = result['invoice']['description']
+            @custom_data = result['custom_data']
+            @total_amount = result['invoice']['total_amount']
+            @response_text = "Invoice status is #{result['status'].upcase}"
+            false
+          end
+        else
+          @response_text = "Invoice Not Found"
+          @response_code = 1002
+          @status = MPower::FAIL
+          false
+        end
       end
 
       def create
@@ -74,7 +109,7 @@ module MPower
           }
         }
 
-        result = http_request(BASE_URL,{:data => checkout_payload },true)
+        result = http_json_request(MPower::Setup.checkout_base_url,checkout_payload)
 
         case result["response_code"]
         when "00"

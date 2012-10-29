@@ -4,8 +4,12 @@ module MPower
     @@private_key = nil
     @@public_key = nil
     @@token = nil
-
     @@mode = "test"
+
+    LIVE_CHECKOUT_INVOICE_BASE_URL = "https://app.mpowerpayments.com/api/v1/checkout-invoice/create";
+    TEST_CHECKOUT_INVOICE_BASE_URL = "https://app.mpowerpayments.com/sandbox-api/v1/checkout-invoice/create";
+    LIVE_CHECKOUT_CONFIRM_BASE_URL = "https://app.mpowerpayments.com/api/v1/checkout-invoice/confirm/";
+    TEST_CHECKOUT_CONFIRM_BASE_URL = "https://app.mpowerpayments.com/sandbox-api/v1/checkout-invoice/confirm/";
 
     def self.master_key=(master_key); @@master_key = master_key; end
     def self.master_key; @@master_key; end
@@ -18,5 +22,13 @@ module MPower
 
     def self.mode=(mode); @@mode = mode; end
     def self.mode; @@mode; end
+
+    def checkout_base_url
+        @@mode == "live" ? LIVE_CHECKOUT_INVOICE_BASE_URL : TEST_CHECKOUT_INVOICE_BASE_URL
+    end
+
+    def checkout_confirm_base_url
+        @@mode == "live" ? LIVE_CHECKOUT_CONFIRM_BASE_URL : TEST_CHECKOUT_CONFIRM_BASE_URL
+    end
   end
 end
