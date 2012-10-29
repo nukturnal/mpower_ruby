@@ -23,11 +23,11 @@ module MPower
     def self.mode=(mode); @@mode = mode; end
     def self.mode; @@mode; end
 
-    def checkout_base_url
+    def self.checkout_base_url
         @@mode == "live" ? LIVE_CHECKOUT_INVOICE_BASE_URL : TEST_CHECKOUT_INVOICE_BASE_URL
     end
 
-    def checkout_confirm_base_url
+    def self.checkout_confirm_base_url
         @@mode == "live" ? LIVE_CHECKOUT_CONFIRM_BASE_URL : TEST_CHECKOUT_CONFIRM_BASE_URL
     end
   end
