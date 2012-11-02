@@ -68,9 +68,9 @@ Params for addItem function `add_item(name_of_item,quantity,unit_price,total_pri
 
 ## You can add custom data to your invoice which can be called back later
 
-    co.custom_data["Firstname"] = "Alfred"
-    co.custom_data["Lastname"] = "Rowe"
-    co.custom_data["CartId"] = 929292872
+    co.add_custom_data("Firstname","Alfred")
+    co.add_custom_data("Lastname","Rowe")
+    co.add_custom_data("CartId",929292872)
 
 ## Redirecting to your checkout invoice page
 
