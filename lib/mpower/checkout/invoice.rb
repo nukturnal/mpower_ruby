@@ -56,7 +56,7 @@ module MPower
       end
 
       def get_custom_data(key)
-        @custom_data["#{name}"]
+        @custom_data["#{key}"]
       end
 
       def confirm(token)
@@ -107,6 +107,7 @@ module MPower
             :logo_url => @store.logo_url,
             :website_url => @store.website_url
           },
+          :custom_data => @custom_data,
           :actions => {
             :cancel_url => @cancel_url,
             :return_url => @return_url
