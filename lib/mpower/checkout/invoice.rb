@@ -40,7 +40,7 @@ module MPower
       end
 
       def add_custom_data(key,value)
-        @custom_data[key] = value
+        @custom_data["#{key}"] = value
       end
 
       def get_items
