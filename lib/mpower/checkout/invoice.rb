@@ -18,13 +18,14 @@ module MPower
       end
 
       # Adds invoice items to the @items hash, the idea is to allow this function to be used in a loop
-      def add_item(name,quantity,unit_price,total_price)
+      def add_item(name,quantity,unit_price,total_price,description="")
         @items.merge!({
           :"item_#{@items.size}" => {
             :name => name,
             :quantity => quantity,
             :unit_price => unit_price,
-            :total_price => total_price
+            :total_price => total_price,
+            :description => description
           }
         })
       end

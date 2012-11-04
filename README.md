@@ -51,10 +51,10 @@ When a returnURL is not set, MPower will redirect the customer to the receipt pa
 
     co = MPower::Checkout::Invoice.new
 
-Params for addItem function `add_item(name_of_item,quantity,unit_price,total_price)`
+Params for addItem function `add_item(name_of_item,quantity,unit_price,total_price,optional_description)`
 
     co.add_item("13' Apple Retina 500 HDD",1,999.99,999.99)
-    co.add_item("Case Logic laptop Bag",2,100.50,201)
+    co.add_item("Case Logic laptop Bag",2,100.50,201,"My optional item description")
     co.add_item("Mordecai's Bag",2,100.50,400)
 
 ## Set the total amount to be charged ! Important
