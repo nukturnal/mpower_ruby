@@ -2,7 +2,7 @@ module MPower
   module Checkout
     class Invoice < MPower::Checkout::Core
 
-      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store
+      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store, :token
       attr_accessor :customer, :custom_data, :cancel_url, :return_url, :invoice_url, :receipt_url
 
       def initialize
@@ -118,6 +118,7 @@ module MPower
         result = http_json_request(MPower::Setup.checkout_base_url,checkout_payload)
         case result["response_code"]
         when "00"
+          @token = result["token"]
           @response_text = result["response_description"]
           @response_code = result["response_code"]
           @invoice_url = result["response_text"]
