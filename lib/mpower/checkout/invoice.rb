@@ -2,7 +2,7 @@ module MPower
   module Checkout
     class Invoice < MPower::Checkout::Core
 
-      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store, :token
+      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store
       attr_accessor :customer, :custom_data, :cancel_url, :return_url, :invoice_url, :receipt_url
 
       def initialize
