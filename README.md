@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/nukturnal/smsgh_sms)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/nukturnal/mpower_ruby)
 
 # MpowerRuby
 
