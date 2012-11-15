@@ -8,7 +8,8 @@ module MPower
   end
 end
 
-%w(checkout/invoice
+%w(checkout/redirect_invoice
+  checkout/onsite_invoice
   checkout/store
 ).each do |lib|
   require File.join(File.dirname(__FILE__), lib)

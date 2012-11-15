@@ -61,26 +61,26 @@ module MPower
       end
 
       def confirm(token)
-        result = http_get_request("#{MPower::Setup.checkout_confirm_base_url}#{token}");
+        result = http_get_request("#{MPower::Setup.checkout_confirm_base_url}#{token}")
         if result.size > 0
-          case result['status']
-          when 'completed'
-            @status = result['status']
-            @customer = result['customer']
-            @items = result['invoice']['items']
-            @taxes = result['invoice']['taxes']
-            @description = result['invoice']['description']
-            @custom_data = result['custom_data']
-            @total_amount = result['invoice']['total_amount']
-            @receipt_url = result['receipt_url']
+          case result["status"]
+          when "completed"
+            @status = result["status"]
+            @customer = result["customer"]
+            @items = result["invoice"]["items"]
+            @taxes = result["invoice"]["taxes"]
+            @description = result["invoice"]["description"]
+            @custom_data = result["custom_data"]
+            @total_amount = result["invoice"]["total_amount"]
+            @receipt_url = result["receipt_url"]
             true
           else
-            @status = result['status']
-            @items = result['invoice']['items']
-            @taxes = result['invoice']['taxes']
-            @description = result['invoice']['description']
-            @custom_data = result['custom_data']
-            @total_amount = result['invoice']['total_amount']
+            @status = result["status"]
+            @items = result["invoice"]["items"]
+            @taxes = result["invoice"]["taxes"]
+            @description = result["invoice"]["description"]
+            @custom_data = result["custom_data"]
+            @total_amount = result["invoice"]["total_amount"]
             @response_text = "Invoice status is #{result['status'].upcase}"
             false
           end

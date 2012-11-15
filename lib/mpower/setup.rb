@@ -6,10 +6,15 @@ module MPower
     @@token = nil
     @@mode = "test"
 
-    LIVE_CHECKOUT_INVOICE_BASE_URL = "https://app.mpowerpayments.com/api/v1/checkout-invoice/create"
-    TEST_CHECKOUT_INVOICE_BASE_URL = "https://app.mpowerpayments.com/sandbox-api/v1/checkout-invoice/create"
-    LIVE_CHECKOUT_CONFIRM_BASE_URL = "https://app.mpowerpayments.com/api/v1/checkout-invoice/confirm/"
-    TEST_CHECKOUT_CONFIRM_BASE_URL = "https://app.mpowerpayments.com/sandbox-api/v1/checkout-invoice/confirm/"
+    ROOT_URL_BASE = "http://localhost:3000"
+    LIVE_CHECKOUT_INVOICE_BASE_URL = "#{ROOT_URL_BASE}/api/v1/checkout-invoice/create"
+    TEST_CHECKOUT_INVOICE_BASE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/checkout-invoice/create"
+    LIVE_CHECKOUT_CONFIRM_BASE_URL = "#{ROOT_URL_BASE}/api/v1/checkout-invoice/confirm/"
+    TEST_CHECKOUT_CONFIRM_BASE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/checkout-invoice/confirm/"
+    LIVE_OPR_BASE_URL = "#{ROOT_URL_BASE}/api/v1/opr/create"
+    TEST_OPR_BASE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/opr/create"
+    LIVE_OPR_CHARGE_BASE_URL = "#{ROOT_URL_BASE}/api/v1/opr/charge"
+    TEST_OPR_CHARGE_BASE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/opr/charge"
 
     def self.master_key=(master_key); @@master_key = master_key; end
     def self.master_key; @@master_key; end
@@ -30,5 +35,14 @@ module MPower
     def self.checkout_confirm_base_url
         @@mode == "live" ? LIVE_CHECKOUT_CONFIRM_BASE_URL : TEST_CHECKOUT_CONFIRM_BASE_URL
     end
+
+    def self.opr_base_url
+        @@mode == "live" ? LIVE_OPR_BASE_URL : TEST_OPR_BASE_URL
+    end
+
+    def self.opr_charge_base_url
+        @@mode == "live" ? LIVE_OPR_CHARGE_BASE_URL : TEST_OPR_CHARGE_BASE_URL
+    end
+
   end
 end
