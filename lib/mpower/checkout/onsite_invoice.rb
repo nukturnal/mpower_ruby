@@ -36,30 +36,9 @@ module MPower
       end
 
       def create(account_alias)
-        invoice_data = {
-          :invoice => {
-            :items => @items,
-            :taxes => @taxes,
-            :total_amount => @total_amount,
-            :description => description
-          },
-          :store => {
-            :name => @store.name,
-            :tagline => @store.tagline,
-            :postal_address => @store.postal_address,
-            :phone => @store.phone_number,
-            :logo_url => @store.logo_url,
-            :website_url => @store.website_url
-          },
-          :custom_data => @custom_data,
-          :actions => {
-            :cancel_url => @cancel_url,
-            :return_url => @return_url
-          }
-        }
-
+        
         payload = {
-          :invoice_data => invoice_data,
+          :invoice_data => build_invoice_payload,
           :opr_data => {
             :account_alias => account_alias
           }

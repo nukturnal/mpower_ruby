@@ -92,29 +92,7 @@ module MPower
       end
 
       def create
-        checkout_payload = {
-          :invoice => {
-            :items => @items,
-            :taxes => @taxes,
-            :total_amount => @total_amount,
-            :description => description
-          },
-          :store => {
-            :name => @store.name,
-            :tagline => @store.tagline,
-            :postal_address => @store.postal_address,
-            :phone => @store.phone_number,
-            :logo_url => @store.logo_url,
-            :website_url => @store.website_url
-          },
-          :custom_data => @custom_data,
-          :actions => {
-            :cancel_url => @cancel_url,
-            :return_url => @return_url
-          }
-        }
-
-        result = http_json_request(MPower::Setup.checkout_base_url,checkout_payload)
+        result = http_json_request(MPower::Setup.checkout_base_url,build_invoice_payload)
         if result["response_code"] == "00"
           @token = result["token"]
           @response_text = result["response_description"]
@@ -130,7 +108,30 @@ module MPower
           false
         end
       end
-
+      
+      protected
+      def build_invoice_payload
+        { :invoice => {
+          :items => @items,
+          :taxes => @taxes,
+          :total_amount => @total_amount,
+          :description => description
+        },
+        :store => {
+          :name => @store.name,
+          :tagline => @store.tagline,
+          :postal_address => @store.postal_address,
+          :phone => @store.phone_number,
+          :logo_url => @store.logo_url,
+          :website_url => @store.website_url
+        },
+        :custom_data => @custom_data,
+        :actions => {
+          :cancel_url => @cancel_url,
+          :return_url => @return_url
+        }
+      }
+      end
     end
   end
 end
