@@ -1,7 +1,7 @@
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/nukturnal/mpower_ruby)
 
-# MpowerRuby
-
+# Mpower Ruby Client API
+========================
 MPower Payments Ruby Client Library
 
 ## Offical Documentation
@@ -93,7 +93,7 @@ Params for addItem function `add_item(name_of_item,quantity,unit_price,total_pri
 First step is to take the customers mpower account alias, this could be the phoneno, username or mpower account number.
 pass this as a param for the `create` action of the `MPower::Onsite::Invoice` class instance. MPower will return an OPR TOKEN after the request is successfull. The customer will also receieve a confirmation TOKEN.
         
-        if co.create("mpower_account_alias")
+        if co.create("CUSTOMER_MPOWER_USERNAME_OR_PHONE")
             @opr_token = co.token
         else
             @message = co.response_text
@@ -107,6 +107,9 @@ Second step requires you to accept the confirmation TOKEN from the customer, add
         else
             @message = co.response_text
         end
+
+## Download MPower RubyOnRails Demo
+https://github.com/nukturnal/MPower_Rails_Demo
 
 ## Contributing
 
