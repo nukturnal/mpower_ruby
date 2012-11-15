@@ -16,8 +16,7 @@ module MPower
 
         result = http_json_request(MPower::Setup.opr_charge_base_url,payload)
 
-        case result["response_code"]
-        when "00"
+        if result["response_code"] == "00"
           @status = result["invoice_data"]["status"]
           @customer = result["invoice_data"]["customer"]
           @items = result["invoice_data"]["invoice"]["items"]
@@ -67,8 +66,7 @@ module MPower
         }
 
         result = http_json_request(MPower::Setup.opr_base_url,payload)
-        case result["response_code"]
-        when "00"
+        if result["response_code"] == "00"
           @token = result["token"]
           @response_text = result["response_text"]
           @response_code = result["response_code"]

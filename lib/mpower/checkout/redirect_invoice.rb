@@ -63,8 +63,7 @@ module MPower
       def confirm(token)
         result = http_get_request("#{MPower::Setup.checkout_confirm_base_url}#{token}")
         if result.size > 0
-          case result["status"]
-          when "completed"
+          if result["status"] == "completed"
             @status = result["status"]
             @customer = result["customer"]
             @items = result["invoice"]["items"]
@@ -116,8 +115,7 @@ module MPower
         }
 
         result = http_json_request(MPower::Setup.checkout_base_url,checkout_payload)
-        case result["response_code"]
-        when "00"
+        if result["response_code"] == "00"
           @token = result["token"]
           @response_text = result["response_description"]
           @response_code = result["response_code"]

@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["alfred@ncodedevlabs.com"]
   gem.description   = %q{Ruby library for integrating with the MPower Gateway}
   gem.summary       = %q{Ruby client bindings for the MPower API}
-  gem.homepage      = "https://github.com/nukturnal/mpower_ruby"
+  gem.homepage      = "http://mpowerpayments.com/developers/docs/ruby.html"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
