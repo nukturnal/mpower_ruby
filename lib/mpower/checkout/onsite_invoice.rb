@@ -17,14 +17,7 @@ module MPower
         result = http_json_request(MPower::Setup.opr_charge_base_url,payload)
 
         if result["response_code"] == "00"
-          @status = result["invoice_data"]["status"]
-          @customer = result["invoice_data"]["customer"]
-          @items = result["invoice_data"]["invoice"]["items"]
-          @taxes = result["invoice_data"]["invoice"]["taxes"]
-          @description = result["invoice_data"]["invoice"]["description"]
-          @custom_data = result["invoice_data"]["custom_data"]
-          @total_amount = result["invoice_data"]["invoice"]["total_amount"]
-          @receipt_url = result["invoice_data"]["receipt_url"]
+          rebuild_invoice(result["invoice_data"])
           @response_code = result["response_code"]
           @response_text = result["response_text"]
           true
@@ -36,7 +29,7 @@ module MPower
       end
 
       def create(account_alias)
-        
+
         payload = {
           :invoice_data => build_invoice_payload,
           :opr_data => {

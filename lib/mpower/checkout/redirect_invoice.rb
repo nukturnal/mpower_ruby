@@ -62,31 +62,25 @@ module MPower
 
       def confirm(token)
         result = http_get_request("#{MPower::Setup.checkout_confirm_base_url}#{token}")
-        if result.size > 0
-          if result["status"] == "completed"
-            @status = result["status"]
-            @customer = result["customer"]
-            @items = result["invoice"]["items"]
-            @taxes = result["invoice"]["taxes"]
-            @description = result["invoice"]["description"]
-            @custom_data = result["custom_data"]
-            @total_amount = result["invoice"]["total_amount"]
-            @receipt_url = result["receipt_url"]
-            true
-          else
-            @status = result["status"]
-            @items = result["invoice"]["items"]
-            @taxes = result["invoice"]["taxes"]
-            @description = result["invoice"]["description"]
-            @custom_data = result["custom_data"]
-            @total_amount = result["invoice"]["total_amount"]
-            @response_text = "Invoice status is #{result['status'].upcase}"
-            false
-          end
-        else
+        unless result.size > 0
           @response_text = "Invoice Not Found"
           @response_code = 1002
           @status = MPower::FAIL
+          return false
+        end
+
+        if result["status"] == "completed"
+          rebuild_invoice(result)
+          @response_text = result["response_text"]
+          true
+        else
+          @status = result["status"]
+          @items = result["invoice"]["items"]
+          @taxes = result["invoice"]["taxes"]
+          @description = result["invoice"]["description"]
+          @custom_data = result["custom_data"]
+          @total_amount = result["invoice"]["total_amount"]
+          @response_text = "Invoice status is #{result['status'].upcase}"
           false
         end
       end
@@ -118,6 +112,17 @@ module MPower
           :return_url => @return_url
         }
       }
+      end
+
+      def rebuild_invoice(result={})
+        @status = result["status"]
+        @customer = result["customer"]
+        @items = result["invoice"]["items"]
+        @taxes = result["invoice"]["taxes"]
+        @description = result["invoice"]["description"]
+        @custom_data = result["custom_data"]
+        @total_amount = result["invoice"]["total_amount"]
+        @receipt_url = result["receipt_url"]
       end
 
       def create_response(result={})
