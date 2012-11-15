@@ -4,6 +4,9 @@
 
 MPower Payments Ruby Client Library
 
+## Offical Documentation
+http://mpowerpayments.com/developers/docs/ruby.html
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -53,6 +56,10 @@ When a returnURL is not set, MPower will redirect the customer to the receipt pa
 
     co = MPower::Checkout::Invoice.new
 
+## Create your Onsite Payment Request Invoice
+
+    co = MPower::Onsite::Invoice.new
+
 Params for addItem function `add_item(name_of_item,quantity,unit_price,total_price,optional_description)`
 
     co.add_item("13' Apple Retina 500 HDD",1,999.99,999.99)
@@ -81,6 +88,25 @@ Params for addItem function `add_item(name_of_item,quantity,unit_price,total_pri
 		else
 			@message = co.response_text
 		end
+
+## Onsite Payment Request(OPR) Charge
+First step is to take the customers mpower account alias, this could be the phoneno, username or mpower account number.
+pass this as a param for the `create` action of the `MPower::Onsite::Invoice` class instance. MPower will return an OPR TOKEN after the request is successfull. The customer will also receieve a confirmation TOKEN.
+        
+        if co.create("mpower_account_alias")
+            @opr_token = co.token
+        else
+            @message = co.response_text
+        end
+
+Second step requires you to accept the confirmation TOKEN from the customer, add your OPR Token and issue the charge. Upon successfull charge you should be able to access the digital receipt URL and other objects outlined in the offical docs.
+
+        if co.charge("OPR_TOKEN","CUSTOMER_CONFIRM_TOKEN")
+            @receipt = co.receipt_url
+            @customer_name = co.customer['name']
+        else
+            @message = co.response_text
+        end
 
 ## Contributing
 
