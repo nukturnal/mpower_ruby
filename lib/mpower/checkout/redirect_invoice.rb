@@ -93,22 +93,9 @@ module MPower
 
       def create
         result = http_json_request(MPower::Setup.checkout_base_url,build_invoice_payload)
-        if result["response_code"] == "00"
-          @token = result["token"]
-          @response_text = result["response_description"]
-          @response_code = result["response_code"]
-          @invoice_url = result["response_text"]
-          @status = MPower::SUCCESS
-          true
-        else
-          @response_text = result["response_text"]
-          @response_code = result["response_code"]
-          @invoice_url = nil
-          @status = MPower::FAIL
-          false
-        end
+        create_response(result)
       end
-      
+
       protected
       def build_invoice_payload
         { :invoice => {
@@ -131,6 +118,23 @@ module MPower
           :return_url => @return_url
         }
       }
+      end
+
+      def create_response(result={})
+        if result["response_code"] == "00"
+          @token = result["token"]
+          @response_text = result["response_description"]
+          @response_code = result["response_code"]
+          @invoice_url = result["response_text"]
+          @status = MPower::SUCCESS
+          true
+        else
+          @response_text = result["response_text"]
+          @response_code = result["response_code"]
+          @invoice_url = nil
+          @status = MPower::FAIL
+          false
+        end
       end
     end
   end

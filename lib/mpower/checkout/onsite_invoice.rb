@@ -45,20 +45,7 @@ module MPower
         }
 
         result = http_json_request(MPower::Setup.opr_base_url,payload)
-        if result["response_code"] == "00"
-          @token = result["token"]
-          @response_text = result["response_text"]
-          @response_code = result["response_code"]
-          @invoice_token = result["invoice_token"]
-          @status = MPower::SUCCESS
-          true
-        else
-          @response_text = result["response_text"]
-          @response_code = result["response_code"]
-          @invoice_url = nil
-          @status = MPower::FAIL
-          false
-        end
+        create_response(result)
       end
 
     end
