@@ -62,7 +62,7 @@ module MPower
 
       def confirm(token)
         result = http_get_request("#{MPower::Setup.checkout_confirm_base_url}#{token}")
-        if result.size > 0
+        unless result.size > 0
           @response_text = "Invoice Not Found"
           @response_code = 1002
           @status = MPower::FAIL
