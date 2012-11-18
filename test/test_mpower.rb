@@ -12,6 +12,5 @@ class TestMPower < Test::Unit::TestCase
     assert_equal(2, invoice.get_items.size)
     assert_instance_of(Hash, invoice.get_items[:item_0])
     assert_equal(5, invoice.get_items[:item_0].size)
-    assert_equal("{:name=>\"Cart Item 1\", :quantity=>1, :unit_price=>10.0, :total_price=>10.0, :description=>\"with optional description\"}", invoice.get_items[:item_0].to_s)
   end
 end
