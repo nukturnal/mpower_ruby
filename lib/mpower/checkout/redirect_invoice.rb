@@ -45,11 +45,11 @@ module MPower
       end
 
       def get_items
-        hash_to_json @items
+        @items
       end
 
       def get_taxes
-        hash_to_json @taxes
+        @taxes
       end
 
       def get_customer_info(key)
