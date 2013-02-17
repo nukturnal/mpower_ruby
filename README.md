@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/nukturnal/mpower_ruby) [![Build Status](https://secure.travis-ci.org/nukturnal/mpower_ruby.png?branch=master)](https://travis-ci.org/nukturnal/mpower_ruby) [![Dependency Status](https://gemnasium.com/nukturnal/mpower_ruby.png)](https://gemnasium.com/nukturnal/mpower_ruby)
+[![Code Climate](https://codeclimate.com/github/nukturnal/mpower_ruby.png)](https://codeclimate.com/github/nukturnal/mpower_ruby) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/nukturnal/mpower_ruby) [![Build Status](https://secure.travis-ci.org/nukturnal/mpower_ruby.png?branch=master)](https://travis-ci.org/nukturnal/mpower_ruby) [![Dependency Status](https://gemnasium.com/nukturnal/mpower_ruby.png)](https://gemnasium.com/nukturnal/mpower_ruby)
 
 # Mpower Ruby Client API
 ========================
