@@ -93,20 +93,33 @@ Params for addItem function `add_item(name_of_item,quantity,unit_price,total_pri
 First step is to take the customers mpower account alias, this could be the phoneno, username or mpower account number.
 pass this as a param for the `create` action of the `MPower::Onsite::Invoice` class instance. MPower will return an OPR TOKEN after the request is successfull. The customer will also receieve a confirmation TOKEN.
         
-        if co.create("CUSTOMER_MPOWER_USERNAME_OR_PHONE")
-            @opr_token = co.token
-        else
-            @message = co.response_text
-        end
+    if co.create("CUSTOMER_MPOWER_USERNAME_OR_PHONE")
+        @opr_token = co.token
+    else
+        @message = co.response_text
+    end
 
 Second step requires you to accept the confirmation TOKEN from the customer, add your OPR Token and issue the charge. Upon successfull charge you should be able to access the digital receipt URL and other objects outlined in the offical docs.
 
-        if co.charge("OPR_TOKEN","CUSTOMER_CONFIRM_TOKEN")
-            @receipt = co.receipt_url
-            @customer_name = co.customer['name']
-        else
-            @message = co.response_text
-        end
+    if co.charge("OPR_TOKEN","CUSTOMER_CONFIRM_TOKEN")
+        @receipt = co.receipt_url
+        @customer_name = co.customer['name']
+    else
+        @message = co.response_text
+    end
+
+## DirectPay Request
+You can pay any MPower account directly via your third party apps. This is particularly excellent for implementing your own Adaptive payment solutions on top of MPower. 
+
+    direct_pay = MPower::DirectPay.new
+    if (direct_pay.credit_account("CUSTOMER_MPOWER_USERNAME_OR_PHONE",100))
+      puts direct_pay.description
+      puts direct_pay.response_text
+      puts direct_pay.transaction_id
+    else
+      puts direct_pay.description
+      puts direct_pay.response_text
+    end
 
 ## Download MPower RubyOnRails Demo
 https://github.com/nukturnal/MPower_Rails_Demo
