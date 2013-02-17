@@ -2,7 +2,7 @@ module MPower
   module Checkout
     module Store
       @@name = "Untitled Store"
-      @@tagline = "Put your online store's tagline here."
+      @@tagline = nil
       @@postal_address = nil
       @@phone_number = nil
       @@website_url = nil
