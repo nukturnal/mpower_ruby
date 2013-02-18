@@ -6,12 +6,14 @@ require 'mpower/version'
 Gem::Specification.new do |gem|
   gem.name          = "mpower"
   gem.version       = MPower::VERSION
-  gem.authors       = ["Alfred Rowe"]
+  gem.author       = "Alfred Rowe"
   gem.email         = ["alfred@ncodedevlabs.com"]
   gem.description   = %q{Ruby library for integrating with the MPower Gateway}
   gem.summary       = %q{Ruby client bindings for the MPower API}
   gem.homepage      = "http://mpowerpayments.com/developers/docs/ruby.html"
-  gem.source_code   = "https://github.com/nukturnal/mpower_ruby"
+  gem.source        = "https://github.com/nukturnal/mpower_ruby"
+  gem.license       = "MIT"
+  gem.post_install_message = "Thanks for installing MPower Payments Ruby client.\nYou may read full API docs at http://mpowerpayments.com/developers/docs/ruby.html"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
