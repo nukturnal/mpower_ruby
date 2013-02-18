@@ -83,11 +83,11 @@ Params for addItem function `add_item(name_of_item,quantity,unit_price,total_pri
 
 ## Redirecting to your checkout invoice page
 
-		if co.create
-			redirect_to co.invoice_url
-		else
-			@message = co.response_text
-		end
+    if co.create
+    	redirect_to co.invoice_url
+    else
+    	@message = co.response_text
+    end
 
 ## Onsite Payment Request(OPR) Charge
 First step is to take the customers mpower account alias, this could be the phoneno, username or mpower account number.
