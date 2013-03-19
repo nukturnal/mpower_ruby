@@ -13,12 +13,13 @@ module MPower
       }
 
       result = http_json_request(MPower::Setup.direct_card_charge_base_url,payload)
-      
+
       if result["response_code"] == "00"
         @transaction_id = result["transaction_id"]
         @unity_transaction_id = result["unity_transaction_id"]
         @description = result["description"]
         @response_code = result["response_code"]
+        @response_text = result["response_text"]
         @status = MPower::SUCCESS
         true
       else

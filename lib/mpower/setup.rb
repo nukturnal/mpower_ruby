@@ -23,8 +23,8 @@ module MPower
     LIVE_DIRECT_PAY_CREDIT_BASE_URL = "#{ROOT_URL_BASE}/api/v1/direct-pay/credit-account"
     TEST_DIRECT_PAY_CREDIT_BASE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/direct-pay/credit-account"
 
-    LIVE_DIRECT_CREDITCARD_CHARGE_URL = "/api/v1/direct-card/processcard"
-    TEST_DIRECT_CREDITCARD_CHARGE_URL = "/sandbox-api/v1/direct-card/processcard"
+    LIVE_DIRECT_CREDITCARD_CHARGE_URL = "#{ROOT_URL_BASE}/api/v1/direct-card/processcard"
+    TEST_DIRECT_CREDITCARD_CHARGE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/direct-card/processcard"
 
     def self.master_key=(master_key); @@master_key = master_key; end
     def self.master_key; @@master_key; end

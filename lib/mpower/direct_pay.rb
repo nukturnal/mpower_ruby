@@ -1,7 +1,5 @@
 module MPower
-  class DirectPay
-    include MPower::Utilities
-    attr_accessor :status, :response_text, :response_code, :transaction_id, :description
+  class DirectPay < MPower::Checkout::Core
 
     def credit_account(payee_account,amount)
       payload = {
@@ -14,6 +12,7 @@ module MPower
         @transaction_id = result["transaction_id"]
         @description = result["description"]
         @response_code = result["response_code"]
+        @response_text = result["response_text"]
         @status = MPower::SUCCESS
         true
       else
