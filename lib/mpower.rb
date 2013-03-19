@@ -6,6 +6,7 @@ require "mpower/setup"
 require "mpower/utilities"
 require "mpower/checkout"
 require "mpower/direct_pay"
+require "mpower/direct_card"
 
 module MPower
   SUCCESS = "success"
