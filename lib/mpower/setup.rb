@@ -26,6 +26,11 @@ module MPower
     LIVE_DIRECT_CREDITCARD_CHARGE_URL = "#{ROOT_URL_BASE}/api/v1/direct-card/processcard"
     TEST_DIRECT_CREDITCARD_CHARGE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/direct-card/processcard"
 
+    LIVE_DIRECT_MOBILE_CHARGE_URL = "#{ROOT_URL_BASE}/api/v1/direct-mobile/charge"
+    TEST_DIRECT_MOBILE_CHARGE_URL = "#{ROOT_URL_BASE}/api/v1/direct-mobile/charge"
+    LIVE_DIRECT_MOBILE_TX_STATUS_URL = "#{ROOT_URL_BASE}/api/v1/direct-mobile/status"
+    TEST_DIRECT_MOBILE_TX_STATUS_URL = "#{ROOT_URL_BASE}/api/v1/direct-mobile/status"
+
     def self.master_key=(master_key); @@master_key = master_key; end
     def self.master_key; @@master_key; end
     def self.private_key=(private_key); @@private_key = private_key; end
@@ -60,6 +65,14 @@ module MPower
 
     def self.direct_card_charge_base_url
         @@mode == "live" ? LIVE_DIRECT_CREDITCARD_CHARGE_URL : TEST_DIRECT_CREDITCARD_CHARGE_URL
+    end
+
+    def self.direct_mobile_charge_base_url
+        @@mode == "live" ? LIVE_DIRECT_MOBILE_CHARGE_URL : TEST_DIRECT_MOBILE_CHARGE_URL
+    end
+
+    def self.direct_mobile_tx_status_base_url
+        @@mode == "live" ? LIVE_DIRECT_MOBILE_TX_STATUS_URL : TEST_DIRECT_MOBILE_TX_STATUS_URL
     end
 
   end
