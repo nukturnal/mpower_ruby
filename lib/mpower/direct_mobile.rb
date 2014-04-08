@@ -1,6 +1,7 @@
 module MPower
   class DirectMobile < MPower::Checkout::Core
 
+    attr_accessor :mobile_invoice_no
     def charge(amount,customer_details={})
       payload = {
         :customer_name => customer_details[:customer_name],
@@ -14,6 +15,7 @@ module MPower
       result = http_json_request(MPower::Setup.direct_mobile_charge_base_url,payload)
 
       if result["response_code"] == "00"
+        @mobile_invoice_no = result["mobile_invoice_no"]
         push_results(result)
         true
       else
