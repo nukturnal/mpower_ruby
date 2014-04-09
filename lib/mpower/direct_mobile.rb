@@ -31,6 +31,7 @@ module MPower
 
       if result["response_code"] == "00"
         @tx_status = result["tx_status"]
+        @mobile_invoice_no = result["mobile_invoice_no"]
         push_results(result)
         true
       else
