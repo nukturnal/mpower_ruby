@@ -1,7 +1,7 @@
 module MPower
   class DirectMobile < MPower::Checkout::Core
 
-    attr_accessor :mobile_invoice_no, :tx_status
+    attr_accessor :mobile_invoice_no, :tx_status, :cancel_reason
     def charge(amount,customer_details={})
       payload = {
         :customer_name => customer_details[:customer_name],
@@ -32,6 +32,7 @@ module MPower
       if result["response_code"] == "00"
         @tx_status = result["tx_status"]
         @mobile_invoice_no = result["mobile_invoice_no"]
+        @cancel_reason = result["cancel_reason"]
         push_results(result)
         true
       else
