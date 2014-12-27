@@ -2,8 +2,8 @@ module MPower
   module Checkout
     class Invoice < MPower::Checkout::Core
 
-      attr_accessor :items, :total_amount, :taxes, :description, :currency, :store
-      attr_accessor :customer, :custom_data, :cancel_url, :return_url, :invoice_url, :receipt_url
+      attr_reader :items, :taxes, :description, :currency, :store
+      attr_reader :customer, :custom_data, :cancel_url, :return_url, :invoice_url, :receipt_url
 
       def initialize
         @items = {}
@@ -15,6 +15,7 @@ module MPower
         @store = MPower::Checkout::Store
         @return_url = @store.return_url
         @cancel_url = @store.cancel_url
+        yield(self) if block_given?
       end
 
       # Adds invoice items to the @items hash, the idea is to allow this function to be used in a loop
@@ -28,7 +29,22 @@ module MPower
             :description => description
           }
         })
+
+        self
       end
+
+
+      # Total amount should be the sum of the total_prices of all items in the invoice.
+      def total_amount
+        @items.map { |u, v| v[:total_price] }.reduce(:+)
+      end
+
+
+      # Total number of items
+      def size
+        @items.size
+      end
+
 
       # Adds invoice tax to the @taxes hash, the idea is to allow this function to be used in a loop
       def add_tax(name,amount)
