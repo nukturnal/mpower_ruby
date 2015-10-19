@@ -6,7 +6,7 @@ module MPower
     @@token = nil
     @@mode = "test"
 
-    ROOT_URL_BASE = "https://app.mpowerpayments.com"
+    ROOT_URL_BASE = "http://localhost:3000"
 
     LIVE_CHECKOUT_INVOICE_BASE_URL = "#{ROOT_URL_BASE}/api/v1/checkout-invoice/create"
     TEST_CHECKOUT_INVOICE_BASE_URL = "#{ROOT_URL_BASE}/sandbox-api/v1/checkout-invoice/create"
