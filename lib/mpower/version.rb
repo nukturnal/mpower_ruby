@@ -1,3 +1,3 @@
 module MPower
-  VERSION = "1.2.2"
+  VERSION = "0.0.1"
 end
