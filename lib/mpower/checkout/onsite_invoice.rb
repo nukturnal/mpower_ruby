@@ -1,9 +1,6 @@
 module MPower
   module Onsite
     class Invoice < MPower::Checkout::Invoice
-
-      attr_accessor :invoice_token
-
       def initialize
         super
       end
