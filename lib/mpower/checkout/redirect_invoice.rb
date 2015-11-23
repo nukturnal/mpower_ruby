@@ -123,6 +123,7 @@ module MPower
         @custom_data = result["custom_data"]
         @total_amount = result["invoice"]["total_amount"]
         @receipt_url = result["receipt_url"]
+        @invoice_token = result["invoice_token"]
       end
 
       def create_response(result={})
