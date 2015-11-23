@@ -17,8 +17,12 @@ module MPower
         # Not an elegant implementation
         if result["response_code"] == "00"
           rebuild_invoice(result["invoice_data"])
+          @response_code = result["response_code"]
+-         @response_text = result["response_text"]
           true
         else
+          @response_code = result["response_code"]
+-         @response_text = result["response_text"]
           false
         end
       end
