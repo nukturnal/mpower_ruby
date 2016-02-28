@@ -2,7 +2,7 @@ module MPower
   module Checkout
     class Core
       include MPower::Utilities
-      attr_accessor :status, :response_text, :response_code, :transaction_id, :description, :token, :result
+      attr_accessor :status, :response_text, :response_code, :transaction_id, :description, :token, :result, :invoice_token
 
       def push_results(result={})
         @result = result
