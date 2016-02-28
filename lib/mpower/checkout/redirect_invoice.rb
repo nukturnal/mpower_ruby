@@ -132,6 +132,7 @@ module MPower
           @response_text = result["response_description"]
           @response_code = result["response_code"]
           @invoice_url = result["response_text"]
+          @invoice_token = result["invoice_token"]
           @status = MPower::SUCCESS
           true
         else
